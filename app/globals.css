@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 装饰性几何图形 */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    /* 左上角圆形 */
+    radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.05) 0%, transparent 30%),
+    /* 右上角三角形效果 */
+    conic-gradient(from 45deg at 90% 10%, rgba(147, 51, 234, 0.03) 0deg, transparent 90deg),
+    /* 左下角方形效果 */
+    linear-gradient(45deg, rgba(236, 72, 153, 0.03) 0%, transparent 50%),
+    /* 右下角圆形 */
+    radial-gradient(circle at 90% 90%, rgba(34, 197, 94, 0.05) 0%, transparent 40%),
+    /* 中间装饰线 */
+    linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.02) 50%, transparent 100%);
+  background-size:
+    200px 200px,
+    150px 150px,
+    100px 100px,
+    180px 180px,
+    100% 1px;
+  background-position:
+    10% 10%,
+    90% 10%,
+    10% 90%,
+    90% 90%,
+    0 50%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: -1;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+/* 悬浮容器效果 */
+.floating-container {
+  background: var(--background);
+  border-radius: 16px;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  margin: 20px auto;
+  max-width: 1400px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.floating-container:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 25px 30px -5px rgba(0, 0, 0, 0.15),
+    0 15px 15px -5px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* 暗色模式下的背景 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+
+  body::before {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+  }
+
+  body::after {
+    background-image:
+      radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.08) 0%, transparent 30%),
+      conic-gradient(from 45deg at 90% 10%, rgba(147, 51, 234, 0.05) 0deg, transparent 90deg),
+      linear-gradient(45deg, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 90% 90%, rgba(34, 197, 94, 0.08) 0%, transparent 40%),
+      linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.03) 50%, transparent 100%);
+  }
+
+  .floating-container {
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.3),
+      0 10px 10px -5px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 渐变文字效果 */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 悬停动画 */
+.hover-lift {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* 卡片阴影效果 */
+.card-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card-shadow:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* 响应式优化 */
+@media (min-width: 1280px) {
+  .container-responsive {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-responsive {
+    max-width: 1536px;
+  }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+
+  body::before,
+  body::after {
+    opacity: 0.5;
+  }
+
+  .floating-container {
+    margin: 10px;
+    border-radius: 12px;
+  }
+}
+
+/* 超宽屏幕优化 */
+@media (min-width: 1920px) {
+  body::after {
+    background-size:
+      300px 300px,
+      200px 200px,
+      150px 150px,
+      250px 250px,
+      100% 2px;
+  }
+}
+
+/* Roadmap 自定义滚动条 */
+.roadmap-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.roadmap-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.roadmap-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.roadmap-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.roadmap-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.roadmap-scroll::-webkit-scrollbar-corner {
+  background: #f1f5f9;
+}
+
+/* 暗色模式下的滚动条 */
+@media (prefers-color-scheme: dark) {
+  .roadmap-scroll {
+    scrollbar-color: #475569 #1e293b;
+  }
+
+  .roadmap-scroll::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+
+  .roadmap-scroll::-webkit-scrollbar-thumb {
+    background: #475569;
+  }
+
+  .roadmap-scroll::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+
+  .roadmap-scroll::-webkit-scrollbar-corner {
+    background: #1e293b;
+  }
+}
