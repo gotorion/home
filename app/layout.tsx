@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
 });
 
@@ -26,25 +27,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${playfairDisplay.variable} ${sourceSerif.variable} antialiased`}
       >
         <header className="border-b border-black/6 bg-transparent dark:border-white/6">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <Link href="/" className="text-lg font-semibold">
+          <div className="mx-auto nav-container px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <Link
+              href="/"
+              className="flex items-center gap-3 text-2xl lg:text-3xl font-bold text-shadow-lg"
+            >
+              <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden">
+                <Image
+                  src="/avatar.png"
+                  alt="Jimmy的头像"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               Jimmy
             </Link>
             <nav className="flex flex-wrap gap-3 text-sm">
               <a href="#about" className="hover:underline">
                 关于我
-              </a>
-              <a href="#skills" className="hover:underline">
-                技能
-              </a>
-              <a href="#projects" className="hover:underline">
-                项目
-              </a>
-              <a href="#roadmap" className="hover:underline">
-                路线图
               </a>
               <a href="#contact" className="hover:underline">
                 联系
@@ -53,11 +57,7 @@ export default function RootLayout({
           </div>
         </header>
 
-  <main className="w-full">
-    <div className="floating-container">
-      {children}
-    </div>
-  </main>
+        <main className="w-full">{children}</main>
       </body>
     </html>
   );

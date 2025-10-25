@@ -8,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-playfair);
+  --font-mono: var(--font-source-serif);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,7 +22,7 @@
 body {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-playfair), Georgia, "Times New Roman", Times, serif;
   min-height: 100vh;
   position: relative;
 }
@@ -89,28 +89,6 @@ body::after {
   }
 }
 
-/* 悬浮容器效果 */
-.floating-container {
-  background: var(--background);
-  border-radius: 16px;
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
-  margin: 20px auto;
-  max-width: 1400px;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.floating-container:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 25px 30px -5px rgba(0, 0, 0, 0.15),
-    0 15px 15px -5px rgba(0, 0, 0, 0.06),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
-}
 
 /* 暗色模式下的背景 */
 @media (prefers-color-scheme: dark) {
@@ -133,18 +111,49 @@ body::after {
       radial-gradient(circle at 90% 90%, rgba(34, 197, 94, 0.08) 0%, transparent 40%),
       linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.03) 50%, transparent 100%);
   }
-
-  .floating-container {
-    box-shadow:
-      0 20px 25px -5px rgba(0, 0, 0, 0.3),
-      0 10px 10px -5px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
-  }
 }
 
 /* 平滑滚动 */
 html {
   scroll-behavior: smooth;
+}
+
+/* 字体阴影效果 */
+.text-shadow-lg {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-shadow-lg {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* 导航栏容器宽度 */
+.nav-container {
+  max-width: 1400px;
+}
+
+/* Home容器宽度 */
+.home-container {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+/* Hero标题样式 */
+.hero-title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* 自定义滚动条 */
