@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>{{meta_title}}</title>
+
+    <script>
+        // 在样式加载前恢复用户选择的配色，避免页面闪烁
+        (function () {
+            try {
+                var saved = localStorage.getItem("theme");
+                if (saved === "light" || saved === "dark") {
+                    document.documentElement.dataset.theme = saved;
+                }
+            } catch (e) {}
+        })();
+    </script>
+
+    <link rel="stylesheet" href="{{asset "css/main.css"}}">
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+    <a class="skip-link" href="#main">跳到正文</a>
+
+    {{> "header"}}
+
+    <main id="main" class="site-main">
+        {{{body}}}
+    </main>
+
+    {{> "footer"}}
+
+    <script src="{{asset "js/main.js"}}" defer></script>
+    {{ghost_foot}}
+</body>
+</html>

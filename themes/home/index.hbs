@@ -1,0 +1,39 @@
+{{!< default}}
+{{#match pagination.page "=" 1}}
+<section class="hero">
+    <div class="container hero-inner">
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span>欢迎来到</p>
+        <h1 class="hero-title">{{@site.title}}</h1>
+        {{#if @site.description}}
+            <p class="hero-description">{{@site.description}}</p>
+        {{/if}}
+        <div class="hero-actions">
+            <a class="button button-primary" href="#posts">浏览文章</a>
+            {{#if @site.members_enabled}}
+                <a class="button" href="#/portal/signup">订阅更新</a>
+            {{/if}}
+        </div>
+    </div>
+</section>
+{{/match}}
+
+<section class="posts container" id="posts" aria-labelledby="posts-heading">
+    {{#match pagination.page "=" 1}}
+        <h2 class="section-title" id="posts-heading">最新文章</h2>
+    {{/match}}
+
+    <div class="post-grid">
+        {{#foreach posts}}
+            {{> "post-card"}}
+        {{else}}
+            <div class="empty-state">
+                <h2>还没有文章</h2>
+                <p>前往 <a href="{{@site.url}}/ghost/">Ghost 后台</a> 发布第一篇文章。</p>
+            </div>
+        {{/foreach}}
+    </div>
+
+    {{pagination}}
+</section>
+
+{{> "subscribe"}}

@@ -1,0 +1,25 @@
+{{!< default}}
+{{#tag}}
+<header class="archive-header container">
+    <p class="eyebrow">标签</p>
+    <h1 class="archive-title">{{name}}</h1>
+    {{#if description}}
+        <p class="archive-description">{{description}}</p>
+    {{/if}}
+    <p class="archive-count">共 {{../pagination.total}} 篇文章</p>
+</header>
+{{/tag}}
+
+<section class="posts container">
+    <div class="post-grid">
+        {{#foreach posts}}
+            {{> "post-card"}}
+        {{else}}
+            <div class="empty-state">
+                <p>这个标签下还没有文章。</p>
+            </div>
+        {{/foreach}}
+    </div>
+
+    {{pagination}}
+</section>
