@@ -1,19 +1,22 @@
 ---
+import '@fontsource-variable/archivo';
+
 const year = new Date().getFullYear();
 
 const profile = {
-  name: '你的名字',
+  name: '李俊辉',
   role: '独立开发者 · 网站与产品',
   bio: '帮小团队把想法做成可上线的产品：从需求梳理、技术选型到开发上线，关注性能、可维护性与长期的迭代成本，也做技术咨询与一对一辅导。',
   avatar: '/avatar.svg',
-  email: 'hello@example.com',
-  mailto: 'mailto:hello@example.com',
+  email: 'lijunhui.yolo@gmail.com',
+  mailto: 'mailto:lijunhui.yolo@gmail.com',
 };
 
 const socials = [
   { label: 'GitHub', href: 'https://github.com/yourname' },
   { label: 'X', href: 'https://x.com/yourname' },
-  { label: '邮箱', href: 'mailto:hello@example.com' },
+  { label: '抖音', href: 'https://www.douyin.com/user/yourname' },
+  { label: '公众号', href: 'https://mp.weixin.qq.com/s/your-article' },
 ];
 
 const shots = [
@@ -78,6 +81,13 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
     <meta name="theme-color" content="#efeeec" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="preload"
+      href="/fonts/alibaba-puhuiti-3-55.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <title>{profile.name} — {profile.role}</title>
     <script is:inline>
       document.documentElement.classList.add('js');
@@ -212,7 +222,7 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
             <p class="draft" data-draft aria-live="polite" hidden></p>
           </div>
 
-          <a class="email reveal" data-mail href={profile.mailto} style="--i: 1">{profile.email}</a>
+          <a class="email reveal" data-mail href={profile.mailto} style="--i: 1">{profile.email.split('@')[0]}@<wbr />{profile.email.split('@')[1]}</a>
 
           <div class="contact-foot">
             <div class="contact-bottom">
@@ -220,6 +230,8 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
               <ul class="contact-links">
                 <li><a href="https://github.com/yourname" target="_blank" rel="noreferrer">GitHub</a></li>
                 <li><a href="https://x.com/yourname" target="_blank" rel="noreferrer">X</a></li>
+                <li><a href="https://www.douyin.com/user/yourname" target="_blank" rel="noreferrer">抖音</a></li>
+                <li><a href="https://mp.weixin.qq.com/s/your-article" target="_blank" rel="noreferrer">公众号</a></li>
                 <li><a href={profile.mailto}>邮箱</a></li>
               </ul>
             </div>
@@ -337,8 +349,25 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
         --panel-radius: 24px;
         --card-radius: 16px;
         --pad: 24px;
-        --font: "Archivo Variable", "Archivo", ui-sans-serif, system-ui, -apple-system,
-          "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        --font: "Archivo Variable", "Archivo", "Alibaba PuHuiTi 3", ui-sans-serif, system-ui,
+          -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+          sans-serif;
+      }
+
+      @font-face {
+        font-family: "Alibaba PuHuiTi 3";
+        src: url("/fonts/alibaba-puhuiti-3-55.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Alibaba PuHuiTi 3";
+        src: url("/fonts/alibaba-puhuiti-3-75.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
       }
 
       :global(html) {

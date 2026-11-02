@@ -1,0 +1,14 @@
+阿里巴巴普惠体 3.0 (Alibaba PuHuiTi 3.0)
+Copyright Alibaba Group.
+
+Source: https://fonts.alibabadesign.com/
+The font is offered by Alibaba for free commercial use; see the official site for the
+complete license terms.
+
+Files in this folder are WOFF2 subsets of two weights for this website:
+
+  alibaba-puhuiti-3-55.woff2  阿里巴巴普惠体 3.0 55 Regular  (font-weight 400)
+  alibaba-puhuiti-3-75.woff2  阿里巴巴普惠体 3.0 75 SemiBold (font-weight 600)
+
+Subset on 2026-11-02 to the GB2312 character set plus the characters used by the page.
+Characters outside that set fall back to the system Chinese font.
