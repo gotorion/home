@@ -2,14 +2,15 @@
 import '@fontsource-variable/archivo';
 
 const year = new Date().getFullYear();
+const email = 'lijunhui.yolo@gmail.com';
+const [emailUser, emailDomain] = email.split('@');
 
 const profile = {
   name: '李俊辉',
   role: '独立开发者 · 网站与产品',
   bio: '帮小团队把想法做成可上线的产品：从需求梳理、技术选型到开发上线，关注性能、可维护性与长期的迭代成本，也做技术咨询与一对一辅导。',
   avatar: '/avatar.svg',
-  email: 'lijunhui.yolo@gmail.com',
-  mailto: 'mailto:lijunhui.yolo@gmail.com',
+  mailto: `mailto:${email}`,
 };
 
 const socials = [
@@ -117,7 +118,7 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
 
         <section class="contact" id="contact" aria-labelledby="contact-title">
           <h2 id="contact-title" class="reveal">聊聊你的项目。</h2>
-          <a class="email reveal" style="--i: 1" href={profile.mailto}>{profile.email.split('@')[0]}@<wbr />{profile.email.split('@')[1]}</a>
+          <a class="email reveal" style="--i: 1" href={profile.mailto}>{emailUser}@<wbr />{emailDomain}</a>
           <a class="mail-button reveal" style="--i: 2" role="button" href={profile.mailto}>
             <span>写邮件给我</span>
             <span aria-hidden="true">→</span>
@@ -157,16 +158,16 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
       window.setTimeout(bootReveals, 150);
 
       // The fixed photograph quietly cycles; it does not depend on scrolling.
-      const shots = Array.from(document.querySelectorAll('.shot'));
+      const shotEls = Array.from(document.querySelectorAll('.shot'));
       const shown = (index) => {
-        shots.forEach((shot, i) => shot.classList.toggle('is-active', i === index));
+        shotEls.forEach((shot, i) => shot.classList.toggle('is-active', i === index));
       };
 
       if (!reduceMotion) {
         let current = 0;
         window.setInterval(() => {
           if (document.hidden) return;
-          current = (current + 1) % shots.length;
+          current = (current + 1) % shotEls.length;
           shown(current);
         }, 6000);
       }
@@ -187,8 +188,6 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
         --accent: #7d0c14;
         --field: #7d0c14;
         --field-ink: #e2e2e2;
-        --panel-radius: 0;
-        --card-radius: 0;
         --pad: 24px;
         --font: "Archivo Variable", "Archivo", "Alibaba PuHuiTi 3", ui-sans-serif, system-ui,
           -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
@@ -213,7 +212,6 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
 
       :global(html) {
         color-scheme: light;
-        scroll-behavior: smooth;
       }
 
       :global(*) {
@@ -259,7 +257,6 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
         position: sticky;
         top: var(--pad);
         height: calc(100svh - var(--pad) * 2);
-        border-radius: var(--panel-radius);
         overflow: hidden;
         background: var(--surface);
       }
@@ -301,7 +298,6 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
         bottom: 16px;
         padding: 24px;
         background: var(--bg);
-        border-radius: var(--card-radius);
       }
 
       .avatar {
@@ -540,14 +536,9 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
           height: 50svh;
         }
 
-        .shot {
-          position: absolute;
-        }
-
         .identity {
           position: static;
           padding: 24px;
-          border-radius: 0;
         }
 
         .mobile-cta {
@@ -640,10 +631,6 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
       }
 
       @media (prefers-reduced-motion: reduce) {
-        :global(html) {
-          scroll-behavior: auto;
-        }
-
         .shot {
           transition: none;
           animation: none;
