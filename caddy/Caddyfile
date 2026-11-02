@@ -1,5 +1,0 @@
-# Caddy 会自动为 {$DOMAIN} 申请并续期 Let's Encrypt 证书
-{$DOMAIN} {
-	encode zstd gzip
-	reverse_proxy ghost:2368
-}

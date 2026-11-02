@@ -1,5 +1,0 @@
-# 统一使用 LF，保证 WSL / Linux 服务器上脚本可直接运行
-* text=auto eol=lf
-
-# 字体按二进制处理
-*.woff2 binary
