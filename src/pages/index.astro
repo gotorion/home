@@ -1,16 +1,985 @@
 ---
+const year = new Date().getFullYear();
+
+const profile = {
+  name: '你的名字',
+  role: '独立开发者 · 网站与产品',
+  bio: '帮小团队把想法做成可上线的产品：从需求梳理、技术选型到开发上线，关注性能、可维护性与长期的迭代成本，也做技术咨询与一对一辅导。',
+  avatar: '/avatar.svg',
+  email: 'hello@example.com',
+  mailto: 'mailto:hello@example.com',
+};
+
+const socials = [
+  { label: 'GitHub', href: 'https://github.com/yourname' },
+  { label: 'X', href: 'https://x.com/yourname' },
+  { label: '邮箱', href: 'mailto:hello@example.com' },
+];
+
+const shots = [
+  { src: '/images/work-01.jpg', alt: '' },
+  { src: '/images/work-03.jpg', alt: '' },
+  { src: '/images/work-02.jpg', alt: '' },
+  { src: '/images/work-04.jpg', alt: '' },
+];
+
+const services = [
+  {
+    title: '网站与产品开发',
+    description: '从需求到上线，交付可维护的产品。',
+    points: ['需求梳理与技术选型', '前后端实现与上线', '性能、可访问性与 SEO'],
+    image: { src: '/images/work-02.jpg', alt: '白色公寓立面上重复的窗格' },
+  },
+  {
+    title: '技术咨询',
+    description: '先看清问题，再决定是否动手。',
+    points: ['架构与方案评审', '性能与稳定性排查', '技术债与迁移路径'],
+    image: { src: '/images/work-04.jpg', alt: '白色墙面开口中的楼梯' },
+  },
+  {
+    title: '一对一辅导',
+    description: '针对具体问题，给出下一步。',
+    points: ['代码与作品评审', '学习路径与项目拆解', '面试与协作反馈'],
+    image: { src: '/images/work-03.jpg', alt: '四座塔楼围出的天空' },
+  },
+];
+
+const projects = [
+  {
+    title: 'Home',
+    kind: '个人网站',
+    year: '2026',
+    description: '用 Astro 构建的纯静态主页。',
+    href: 'https://github.com/gotorion/home',
+    preview: '/images/work-02.jpg',
+    thumbAlt: '白色公寓立面上重复的窗格',
+  },
+  {
+    title: '项目名称',
+    kind: '产品官网',
+    year: '2025',
+    description: '用一句话说明项目做了什么。',
+    href: '#',
+    preview: '/images/work-04.jpg',
+    thumbAlt: '白色墙面开口中的楼梯',
+  },
+];
+
+const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbush（Unsplash）';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={`${profile.name} — ${profile.role}。${profile.bio}`} />
+    <meta name="theme-color" content="#efeeec" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{profile.name} — {profile.role}</title>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <div class="frame">
+      <aside class="profile">
+        <div class="media" aria-hidden="true">
+          {
+            shots.map((shot, index) => (
+              <img
+                class:list={['shot', { 'is-active': index === 0 }]}
+                src={shot.src}
+                alt={shot.alt}
+                width="1000"
+                height="1400"
+                loading="eager"
+                decoding="async"
+              />
+            ))
+          }
+        </div>
+
+        <div class="identity">
+          <img class="avatar reveal" src={profile.avatar} alt={`${profile.name} 的头像`} width="48" height="48" />
+          <h1 class="reveal" style="--i: 1">{profile.name}</h1>
+          <p class="role reveal" style="--i: 2">{profile.role}</p>
+          <p class="bio reveal" style="--i: 3">{profile.bio}</p>
+          <a class="button reveal" style="--i: 4" href={profile.mailto}>聊聊合作<span aria-hidden="true">→</span></a>
+          <ul class="socials reveal" style="--i: 5">
+            {
+              socials.map((social) => (
+                <li>
+                  <a
+                    href={social.href}
+                    target={social.href.startsWith('http') ? '_blank' : undefined}
+                    rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
+                  >
+                    {social.label}<span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </aside>
+
+      <main class="reading">
+        <section class="services" id="services" data-photo="0" aria-labelledby="services-title">
+          <div class="services-head">
+            <h2 id="services-title" class="reveal">服务</h2>
+          </div>
+          <div class="service-list">
+            {
+              services.map((service, index) => (
+                <article class="service">
+                  <div class="service-media reveal" style={`--i: ${index}`}>
+                    <img
+                      src={service.image.src}
+                      alt={service.image.alt}
+                      width="160"
+                      height="213"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="service-body reveal" style={`--i: ${index + 1}`}>
+                    <h3>{service.title}</h3>
+                    <p>{service.description}</p>
+                    <ul>
+                      {service.points.map((point) => <li>{point}</li>)}
+                    </ul>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="work" id="work" data-photo="1" aria-labelledby="work-title">
+          <h2 id="work-title" class="reveal">项目</h2>
+          <div class="ledger">
+            {
+              projects.map((project) => (
+                <a
+                  class="row reveal"
+                  href={project.href}
+                  data-preview={project.preview}
+                  target={project.href.startsWith('http') ? '_blank' : undefined}
+                  rel={project.href.startsWith('http') ? 'noreferrer' : undefined}
+                >
+                  <img
+                    class="row-thumb"
+                    src={project.preview}
+                    alt=""
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="row-main">
+                    <span class="row-name">{project.title}</span>
+                    <span class="row-desc">{project.description}</span>
+                  </span>
+                  <span class="row-kind">{project.kind}</span>
+                  <span class="row-year">{project.year}</span>
+                </a>
+              ))
+            }
+          </div>
+          <a class="more" href="https://github.com/gotorion" target="_blank" rel="noreferrer">
+            更多项目在 GitHub<span aria-hidden="true">↗</span>
+          </a>
+          <div class="work-preview" aria-hidden="true">
+            <img src="/images/work-02.jpg" alt="" width="240" height="300" loading="lazy" decoding="async" />
+          </div>
+        </section>
+
+        <section class="contact" id="contact" data-photo="3" aria-labelledby="contact-title">
+          <div class="contact-top">
+            <h2 id="contact-title" class="reveal">聊聊你的项目。</h2>
+            <div class="picker reveal" style="--i: 1" role="group" aria-label="选择服务类型，邮件主题会自动写好">
+              {
+                services.map((service) => (
+                  <button type="button" data-subject={service.title} aria-pressed="false">
+                    {service.title}
+                  </button>
+                ))
+              }
+            </div>
+            <p class="draft" data-draft aria-live="polite" hidden></p>
+          </div>
+
+          <a class="email reveal" data-mail href={profile.mailto} style="--i: 1">{profile.email}</a>
+
+          <div class="contact-foot">
+            <div class="contact-bottom">
+              <span>© {year} {profile.name}</span>
+              <ul class="contact-links">
+                <li><a href="https://github.com/yourname" target="_blank" rel="noreferrer">GitHub</a></li>
+                <li><a href="https://x.com/yourname" target="_blank" rel="noreferrer">X</a></li>
+                <li><a href={profile.mailto}>邮箱</a></li>
+              </ul>
+            </div>
+            <p class="credits">照片：{photoCredit}</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reveals = document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in');
+                revealObserver.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12 }
+        );
+        reveals.forEach((el) => revealObserver.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add('is-in'));
+      }
+
+      // The fixed photograph follows the section being read.
+      const shots = Array.from(document.querySelectorAll('.shot'));
+      const shown = (index) => {
+        shots.forEach((shot, i) => shot.classList.toggle('is-active', i === index));
+      };
+
+      if (!reduceMotion) {
+        const photoSections = Array.from(document.querySelectorAll('[data-photo]'));
+        let ticking = false;
+        const followReading = () => {
+          const anchor = window.innerHeight * 0.35;
+          let current = photoSections[0];
+          for (const section of photoSections) {
+            if (section.getBoundingClientRect().top <= anchor) current = section;
+          }
+          shown(Number(current.dataset.photo) || 0);
+        };
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(() => {
+              followReading();
+              ticking = false;
+            });
+          },
+          { passive: true }
+        );
+        followReading();
+      }
+
+      // Hover preview for the work ledger.
+      const preview = document.querySelector('.work-preview');
+      const previewImage = preview ? preview.querySelector('img') : null;
+      if (preview && previewImage && window.matchMedia('(min-width: 981px)').matches) {
+        for (const row of document.querySelectorAll('.row[data-preview]')) {
+          const show = () => {
+            previewImage.src = row.dataset.preview;
+            preview.classList.add('is-on');
+          };
+          const hide = () => preview.classList.remove('is-on');
+          row.addEventListener('pointerenter', show);
+          row.addEventListener('focus', show);
+          row.addEventListener('pointerleave', hide);
+          row.addEventListener('blur', hide);
+        }
+      }
+
+      // Pick a service and the email is written with its subject.
+      const picker = Array.from(document.querySelectorAll('[data-subject]'));
+      const mailLink = document.querySelector('[data-mail]');
+      const draft = document.querySelector('[data-draft]');
+      const baseHref = mailLink ? (mailLink.getAttribute('href') || '').split('?')[0] : '';
+      picker.forEach((button) => {
+        button.addEventListener('click', () => {
+          picker.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          if (mailLink && baseHref) {
+            const subject = `咨询 · ${button.dataset.subject}`;
+            mailLink.href = `${baseHref}?subject=${encodeURIComponent(subject)}`;
+            if (draft) {
+              draft.hidden = false;
+              draft.textContent = `邮件主题：${subject}`;
+            }
+          }
+        });
+      });
+
+      window.setTimeout(() => {
+        if (!document.querySelector('.reveal.is-in')) {
+          reveals.forEach((el) => el.classList.add('is-in'));
+        }
+      }, 2000);
+    </script>
+
+    <style>
+      :global(:root) {
+        --bg: #eeeeee;
+        --surface: #e2e2e2;
+        --ink: #161616;
+        --muted: #6b6b6b;
+        --accent: #7d0c14;
+        --field: #7d0c14;
+        --field-ink: #e2e2e2;
+        --panel-radius: 24px;
+        --card-radius: 16px;
+        --pad: 24px;
+        --font: "Archivo Variable", "Archivo", ui-sans-serif, system-ui, -apple-system,
+          "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      }
+
+      :global(html) {
+        color-scheme: light;
+        scroll-behavior: smooth;
+      }
+
+      :global(*) {
+        box-sizing: border-box;
+      }
+
+      :global(body) {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font);
+        font-size: 18px;
+        line-height: 1.55;
+        letter-spacing: -0.01em;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      :global(img) {
+        max-width: 100%;
+      }
+
+      :global(a) {
+        color: inherit;
+      }
+
+      :global(:focus-visible) {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .frame {
+        max-width: 1680px;
+        margin: 0 auto;
+        padding: var(--pad);
+        display: grid;
+        grid-template-columns: minmax(340px, 42%) minmax(0, 1fr);
+        gap: var(--pad);
+        align-items: start;
+      }
+
+      .profile {
+        position: sticky;
+        top: var(--pad);
+        height: calc(100svh - var(--pad) * 2);
+        border-radius: var(--panel-radius);
+        overflow: hidden;
+        background: var(--surface);
+      }
+
+      .media {
+        position: absolute;
+        inset: 0;
+      }
+
+      .shot {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1) contrast(1.04);
+        opacity: 0;
+        transition: opacity 1.6s ease;
+      }
+
+      .shot.is-active {
+        opacity: 1;
+      }
+
+      .identity {
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        padding: 24px;
+        background: var(--bg);
+        border-radius: var(--card-radius);
+      }
+
+      .avatar {
+        display: block;
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        background: var(--surface);
+      }
+
+      h1 {
+        margin: 14px 0 2px;
+        font-size: clamp(2rem, 3.6vw, 3.25rem);
+        font-weight: 400;
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+      }
+
+      .role {
+        margin: 0 0 12px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+      }
+
+      .bio {
+        margin: 0;
+        max-width: 34ch;
+        font-size: 1.125rem;
+        line-height: 1.5;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        height: 46px;
+        margin-top: 18px;
+        padding: 0 18px;
+        background: var(--accent);
+        color: #ffffff;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .button span {
+        transition: transform 0.2s ease;
+      }
+
+      .button:hover {
+        background: var(--ink);
+      }
+
+      .button:hover span {
+        transform: translateX(3px);
+      }
+
+      .socials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .socials a {
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .socials a span {
+        margin-left: 2px;
+        color: var(--muted);
+      }
+
+      .socials a:hover {
+        color: var(--accent);
+      }
+
+      .reading {
+        min-width: 0;
+        padding: 72px 0 0 clamp(24px, 4.5vw, 72px);
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(2rem, 3.6vw, 3.25rem);
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: clamp(88px, 9vw, 132px) minmax(0, 1fr);
+        gap: clamp(24px, 3vw, 48px);
+        align-items: start;
+      }
+
+      .services-head {
+        position: sticky;
+        top: 48px;
+      }
+
+      .service-list {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(72px, 7vw, 104px);
+      }
+
+      .service {
+        display: grid;
+        grid-template-columns: clamp(120px, 14vw, 190px) minmax(0, 1fr);
+        gap: clamp(20px, 2.4vw, 32px);
+        align-items: start;
+      }
+
+      .service-media img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        filter: grayscale(1) contrast(1.04);
+      }
+
+      .service-body h3 {
+        margin: 0 0 10px;
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+      }
+
+      .service-body p {
+        margin: 0 0 14px;
+        max-width: 38ch;
+        font-size: 1.125rem;
+        line-height: 1.55;
+      }
+
+      .service-body ul {
+        margin: 0;
+        padding: 0 0 0 1.05em;
+        list-style: square;
+      }
+
+      .service-body li {
+        font-size: 1.125rem;
+        line-height: 1.6;
+        padding: 3px 0;
+      }
+
+      .service-body li::marker {
+        color: var(--accent);
+      }
+
+      .work {
+        margin-top: clamp(120px, 14vw, 200px);
+      }
+
+      .ledger {
+        margin-top: 32px;
+      }
+
+      .more {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 28px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        transition: color 0.2s ease;
+      }
+
+      .more:hover {
+        color: var(--accent);
+      }
+
+      .row {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr) auto;
+        gap: 24px;
+        align-items: baseline;
+        padding: 22px 0;
+        text-decoration: none;
+        transition: color 0.2s ease, opacity 0.2s ease;
+      }
+
+      .row-thumb {
+        display: none;
+      }
+
+      .row-main {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .row-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        transition: color 0.2s ease;
+      }
+
+      .row-desc {
+        max-width: 46ch;
+        font-size: 1.125rem;
+        line-height: 1.45;
+      }
+
+      .row-kind {
+        font-size: 0.8125rem;
+        color: var(--muted);
+      }
+
+      .row-year {
+        font-size: 0.8125rem;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .ledger:hover .row {
+        opacity: 0.45;
+      }
+
+      .ledger:hover .row:hover {
+        opacity: 1;
+      }
+
+      .row:hover .row-name,
+      .row:focus-visible .row-name {
+        color: var(--accent);
+      }
+
+      .work-preview {
+        display: none;
+        position: fixed;
+        right: clamp(24px, 4vw, 56px);
+        bottom: 40px;
+        width: clamp(180px, 15vw, 230px);
+        aspect-ratio: 4 / 5;
+        pointer-events: none;
+        z-index: 20;
+      }
+
+      .work-preview.is-on {
+        display: block;
+        animation: preview-in 0.25s ease both;
+      }
+
+      @keyframes preview-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .work-preview img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1) contrast(1.04);
+      }
+
+      .contact {
+        margin-top: clamp(120px, 14vw, 200px);
+        margin-left: calc(clamp(24px, 4.5vw, 72px) * -1);
+        min-height: 82svh;
+        padding: 56px clamp(24px, 4.5vw, 72px) 40px;
+        display: flex;
+        flex-direction: column;
+        background: var(--field);
+        color: var(--field-ink);
+      }
+
+      .contact h2 {
+        max-width: 16ch;
+        font-size: 1.25rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      .picker {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 22px;
+      }
+
+      .picker button {
+        appearance: none;
+        border: 0;
+        padding: 9px 13px;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.18s ease, color 0.18s ease;
+      }
+
+      .picker button:hover {
+        background: rgba(226, 226, 226, 0.12);
+      }
+
+      .picker button[aria-pressed="true"] {
+        background: var(--field-ink);
+        color: var(--field);
+      }
+
+      .draft {
+        margin: 14px 0 0;
+        font-size: 1.125rem;
+        opacity: 0.78;
+      }
+
+      .email {
+        display: block;
+        align-self: stretch;
+        margin-top: auto;
+        padding-top: 64px;
+        font-size: clamp(1.75rem, 4.2vw, 3.75rem);
+        font-weight: 400;
+        line-height: 1.06;
+        letter-spacing: -0.045em;
+        color: var(--field-ink);
+        text-decoration: none;
+        overflow-wrap: anywhere;
+        transition: color 0.2s ease;
+      }
+
+      .email:hover {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.1em;
+      }
+
+      .contact-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 1.125rem;
+      }
+
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .contact-links a {
+        text-decoration: none;
+        transition: color 0.18s ease;
+      }
+
+      .contact-links a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .contact-foot {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 40px;
+      }
+
+      .credits {
+        margin: 0;
+        max-width: 60ch;
+        font-size: 1.125rem;
+        opacity: 0.65;
+      }
+
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: calc(var(--i, 0) * 80ms);
+      }
+
+      .js .reveal.is-in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (max-width: 980px) {
+        .frame {
+          grid-template-columns: 1fr;
+        }
+
+        .profile {
+          position: static;
+          height: auto;
+        }
+
+        .media {
+          position: relative;
+          height: 50svh;
+        }
+
+        .shot {
+          position: absolute;
+        }
+
+        .identity {
+          position: static;
+          padding: 24px;
+          border-radius: 0;
+        }
+
+        .reading {
+          padding: 56px 0 0;
+        }
+
+        .services {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .services-head {
+          position: static;
+        }
+
+        .service {
+          grid-template-columns: 1fr;
+        }
+
+        .service-media img {
+          aspect-ratio: 16 / 10;
+        }
+
+        .service-list {
+          gap: 64px;
+        }
+
+        .work {
+          margin-top: 96px;
+        }
+
+        .row {
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 8px 20px;
+          padding: 20px 0;
+        }
+
+        .row-thumb {
+          display: block;
+          grid-column: 1 / -1;
+          width: 100%;
+          aspect-ratio: 16 / 10;
+          object-fit: cover;
+          margin-bottom: 12px;
+          filter: grayscale(1) contrast(1.04);
+        }
+
+        .row-main {
+          grid-column: 1 / -1;
+          grid-row: 2;
+        }
+
+        .row-kind {
+          grid-column: 1;
+          grid-row: 3;
+        }
+
+        .row-year {
+          grid-column: 2;
+          grid-row: 3;
+        }
+
+        .work-preview {
+          display: none;
+        }
+
+        .contact {
+          margin-top: 96px;
+          margin-left: 0;
+          min-height: 0;
+          padding: 40px 20px 32px;
+        }
+
+        .email {
+          padding-top: 48px;
+          font-size: clamp(1.75rem, 8.6vw, 3rem);
+        }
+
+        .contact-foot {
+          margin-top: 32px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .media {
+          height: 44svh;
+        }
+
+        h1 {
+          font-size: clamp(2rem, 11vw, 2.75rem);
+        }
+
+        .identity {
+          padding: 22px;
+        }
+
+        .button {
+          height: 48px;
+        }
+
+        .socials {
+          gap: 14px;
+        }
+
+        .row {
+          padding: 18px 0;
+        }
+
+        .email {
+          font-size: clamp(1.5rem, 8.2vw, 2.25rem);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        :global(html) {
+          scroll-behavior: auto;
+        }
+
+        .shot {
+          transition: none;
+        }
+
+        .js .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+  </body>
 </html>
