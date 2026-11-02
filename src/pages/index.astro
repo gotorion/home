@@ -81,7 +81,7 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
           <h1 class="reveal" style="--i: 1">{profile.name}</h1>
           <p class="role reveal" style="--i: 2">{profile.role}</p>
           <p class="bio reveal" style="--i: 3">{profile.bio}</p>
-          <a class="button reveal" style="--i: 4" href={profile.mailto}>聊聊合作<span aria-hidden="true">→</span></a>
+          <a class="mobile-cta reveal" style="--i: 4" href={profile.mailto}>聊聊合作<span aria-hidden="true">→</span></a>
           <ul class="socials reveal" style="--i: 5">
             {
               socials.map((social) => (
@@ -187,8 +187,8 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
         --accent: #7d0c14;
         --field: #7d0c14;
         --field-ink: #e2e2e2;
-        --panel-radius: 24px;
-        --card-radius: 16px;
+        --panel-radius: 0;
+        --card-radius: 0;
         --pad: 24px;
         --font: "Archivo Variable", "Archivo", "Alibaba PuHuiTi 3", ui-sans-serif, system-ui,
           -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
@@ -334,32 +334,8 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
         line-height: 1.5;
       }
 
-      .button {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        height: 46px;
-        margin-top: 18px;
-        padding: 0 18px;
-        background: var(--accent);
-        color: #ffffff;
-        font-size: 1.125rem;
-        font-weight: 600;
-        letter-spacing: -0.005em;
-        text-decoration: none;
-        transition: background-color 0.2s ease, color 0.2s ease;
-      }
-
-      .button span {
-        transition: transform 0.2s ease;
-      }
-
-      .button:hover {
-        background: var(--ink);
-      }
-
-      .button:hover span {
-        transform: translateX(3px);
+      .mobile-cta {
+        display: none;
       }
 
       .socials {
@@ -397,6 +373,8 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
 
       .services {
         flex: 1;
+        display: flex;
+        flex-direction: column;
       }
 
       .services h2 {
@@ -412,6 +390,15 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
         flex-direction: column;
         gap: clamp(20px, 4vh, 40px);
         margin-top: clamp(20px, 3vh, 32px);
+      }
+
+      @media (min-width: 981px) {
+        .service-list {
+          flex: 1;
+          justify-content: space-evenly;
+          gap: 0;
+          margin-top: 0;
+        }
       }
 
       .service h3 {
@@ -523,11 +510,6 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
           padding-top: 40px;
         }
 
-        .service-list {
-          margin-top: 18px;
-          gap: 18px;
-        }
-
         .contact {
           gap: 10px;
           padding-top: 22px;
@@ -568,6 +550,33 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
           border-radius: 0;
         }
 
+        .mobile-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          height: 46px;
+          margin-top: 18px;
+          padding: 0 18px;
+          background: var(--accent);
+          color: #ffffff;
+          font-size: 1.125rem;
+          font-weight: 600;
+          text-decoration: none;
+          transition: background-color 0.2s ease;
+        }
+
+        .mobile-cta:hover {
+          background: var(--ink);
+        }
+
+        .mobile-cta span {
+          transition: transform 0.2s ease;
+        }
+
+        .mobile-cta:hover span {
+          transform: translateX(3px);
+        }
+
         .reading {
           min-height: 0;
           padding: 56px 24px 0;
@@ -602,7 +611,7 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
           padding: 22px;
         }
 
-        .button {
+        .mobile-cta {
           height: 48px;
         }
 
