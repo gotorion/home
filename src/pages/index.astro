@@ -33,7 +33,6 @@ const services = [
   { title: '一对一辅导', description: '针对具体问题，给出下一步。' },
 ];
 
-const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbush（Unsplash）';
 ---
 
 <!doctype html>
@@ -123,10 +122,7 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
             <span>写邮件给我</span>
             <span aria-hidden="true">→</span>
           </a>
-          <div class="contact-foot reveal" style="--i: 3">
-            <span>© {year} {profile.name}</span>
-            <span class="credits">照片：{photoCredit}</span>
-          </div>
+          <p class="contact-foot reveal" style="--i: 3">© {year} {profile.name}</p>
         </section>
       </main>
     </div>
@@ -478,15 +474,8 @@ const photoCredit = 'Liam Andrew、Roman Kraft、davide ragusa、Todd Quackenbus
       }
 
       .contact-foot {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 8px 24px;
+        margin: 0;
         font-size: 1rem;
-      }
-
-      .credits {
-        opacity: 0.7;
       }
 
       .js .reveal {

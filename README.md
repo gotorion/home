@@ -35,6 +35,17 @@ src/
 
 `npm run build` 生成纯静态的 `dist/`，可直接交给 Caddy、Nginx 或任意静态托管。
 
+### Cloudflare Pages
+
+- 连接 GitHub 仓库 `gotorion/home`
+- Framework preset：`Astro`
+- Build command：`npm run build`
+- Build output directory：`dist`
+- Node 版本：仓库里的 `.nvmrc` 已指定 `22`；也可以在环境变量里加 `NODE_VERSION=22`
+- 自定义域名：Pages → Custom domains → 添加域名并按提示配置 DNS
+
+`public/_headers` 会被复制到 `dist/`，Cloudflare Pages 会自动应用安全响应头和静态资源缓存策略。
+
 ## 待替换
 
 - GitHub / X / 抖音 / 公众号的实际链接
