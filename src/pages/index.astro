@@ -1,5 +1,13 @@
 ---
 import '@fontsource-variable/archivo';
+import codeIcon from '../../icons/architect/code.svg?raw';
+import compassIcon from '../../icons/architect/compass.svg?raw';
+import userCheckIcon from '../../icons/architect/user-check.svg?raw';
+import mailIcon from '../../icons/architect/mail.svg?raw';
+import githubIcon from '../../icons/brand/github.svg?raw';
+import xIcon from '../../icons/brand/x.svg?raw';
+import douyinIcon from '../../icons/brand/douyin.svg?raw';
+import wechatIcon from '../../icons/brand/wechat.svg?raw';
 
 const year = new Date().getFullYear();
 const email = 'lijunhui.yolo@gmail.com';
@@ -14,10 +22,10 @@ const profile = {
 };
 
 const socials = [
-  { label: 'GitHub', href: 'https://github.com/yourname' },
-  { label: 'X', href: 'https://x.com/yourname' },
-  { label: '抖音', href: 'https://www.douyin.com/user/yourname' },
-  { label: '公众号', href: 'https://mp.weixin.qq.com/s/your-article' },
+  { label: 'GitHub', href: 'https://github.com/yourname', icon: githubIcon },
+  { label: 'X', href: 'https://x.com/yourname', icon: xIcon },
+  { label: '抖音', href: 'https://www.douyin.com/user/yourname', icon: douyinIcon },
+  { label: '公众号', href: 'https://mp.weixin.qq.com/s/your-article', icon: wechatIcon },
 ];
 
 const shots = [
@@ -28,9 +36,9 @@ const shots = [
 ];
 
 const services = [
-  { title: '网站与产品开发', description: '从需求到上线，交付可维护的产品。' },
-  { title: '技术咨询', description: '先看清问题，再决定是否动手。' },
-  { title: '一对一辅导', description: '针对具体问题，给出下一步。' },
+  { title: '网站与产品开发', description: '从需求到上线，交付可维护的产品。', icon: codeIcon },
+  { title: '技术咨询', description: '先看清问题，再决定是否动手。', icon: compassIcon },
+  { title: '一对一辅导', description: '针对具体问题，给出下一步。', icon: userCheckIcon },
 ];
 
 ---
@@ -93,7 +101,8 @@ const services = [
                     target={social.href.startsWith('http') ? '_blank' : undefined}
                     rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
                   >
-                    {social.label}<span aria-hidden="true">↗</span>
+                    <span class="icon social-icon" aria-hidden="true" set:html={social.icon}></span>
+                    {social.label}
                   </a>
                 </li>
               ))
@@ -109,8 +118,11 @@ const services = [
             {
               services.map((service, index) => (
                 <article class="service">
-                  <h3 class="reveal" style={`--i: ${index * 2}`}>{service.title}</h3>
-                  <p class="reveal" style={`--i: ${index * 2 + 1}`}>{service.description}</p>
+                  <span class="icon service-icon reveal" style={`--i: ${index * 3}`} aria-hidden="true" set:html={service.icon}></span>
+                  <div class="service-copy">
+                    <h3 class="reveal" style={`--i: ${index * 3 + 1}`}>{service.title}</h3>
+                    <p class="reveal" style={`--i: ${index * 3 + 2}`}>{service.description}</p>
+                  </div>
                 </article>
               ))
             }
@@ -121,7 +133,10 @@ const services = [
           <h2 id="contact-title" class="reveal">聊聊你的项目。</h2>
           <a class="email reveal" style="--i: 1" href={profile.mailto}>{emailUser}@<wbr />{emailDomain}</a>
           <a class="mail-button reveal" style="--i: 2" role="button" href={profile.mailto}>
-            <span>写邮件给我</span>
+            <span class="mail-button-label">
+              <span class="icon mail-icon" aria-hidden="true" set:html={mailIcon}></span>
+              写邮件给我
+            </span>
             <span aria-hidden="true">→</span>
           </a>
           <p class="contact-foot reveal" style="--i: 3">© {year} {profile.name}</p>
@@ -332,6 +347,19 @@ const services = [
         display: none;
       }
 
+      .icon {
+        display: inline-flex;
+        flex: none;
+        width: 20px;
+        height: 20px;
+      }
+
+      .icon :global(svg) {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
       .socials {
         display: flex;
         flex-wrap: wrap;
@@ -342,18 +370,27 @@ const services = [
       }
 
       .socials a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         font-size: 1.125rem;
         font-weight: 600;
         text-decoration: none;
         transition: color 0.2s ease;
       }
 
-      .socials a span {
-        margin-left: 2px;
+      .socials .social-icon {
+        width: 16px;
+        height: 16px;
         color: var(--muted);
+        transition: color 0.2s ease;
       }
 
       .socials a:hover {
+        color: var(--accent);
+      }
+
+      .socials a:hover .social-icon {
         color: var(--accent);
       }
 
@@ -393,6 +430,22 @@ const services = [
           gap: 0;
           margin-top: 0;
         }
+      }
+
+      .service {
+        display: grid;
+        grid-template-columns: 20px minmax(0, 1fr);
+        gap: 14px;
+        align-items: start;
+      }
+
+      .service-icon {
+        margin-top: 2px;
+        color: var(--ink);
+      }
+
+      .service-copy {
+        min-width: 0;
       }
 
       .service h3 {
@@ -461,6 +514,12 @@ const services = [
         font-weight: 600;
         text-decoration: none;
         transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .mail-button-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
       .mail-button:hover {

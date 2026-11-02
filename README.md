@@ -18,6 +18,10 @@ public/
   images/        4 张建筑氛围图（Liam Andrew 等 / Unsplash）
   fonts/         阿里巴巴普惠体 3.0 子集
   avatar.svg     占位头像
+icons/
+  architect/     页面使用的线框图标
+  brand/         社交品牌标记
+  preview.html   三套方向 + 品牌标记预览
 src/
   pages/index.astro  页面、样式、交互
 ```
@@ -41,7 +45,7 @@ src/
 - Framework preset：`Astro`
 - Build command：`npm run build`
 - Build output directory：`dist`
-- Node 版本：仓库里的 `.nvmrc` 已指定 `22`；也可以在环境变量里加 `NODE_VERSION=22`
+- Node 版本：Astro 7 要求 **Node >= 22.23.4**。仓库里的 `.nvmrc` 已指定 `22.23.4`；Cloudflare 的默认 Node 22 可能是 22.16.0，会构建失败，请在 Pages → Settings → Environment variables 里增加 `NODE_VERSION=22.23.4`
 - 自定义域名：Pages → Custom domains → 添加域名并按提示配置 DNS
 
 `public/_headers` 会被复制到 `dist/`，Cloudflare Pages 会自动应用安全响应头和静态资源缓存策略。

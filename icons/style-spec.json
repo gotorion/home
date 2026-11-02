@@ -1,0 +1,181 @@
+{
+  "project": "李俊辉 homepage",
+  "grid": 24,
+  "padding": 2,
+  "sizes": [
+    16,
+    20,
+    24,
+    32
+  ],
+  "iconCount": 18,
+  "icons": [
+    {
+      "id": "code",
+      "group": "Services",
+      "zh": "开发",
+      "en": "Code"
+    },
+    {
+      "id": "browser",
+      "group": "Services",
+      "zh": "网站",
+      "en": "Browser"
+    },
+    {
+      "id": "layers",
+      "group": "Services",
+      "zh": "产品",
+      "en": "Layers"
+    },
+    {
+      "id": "compass",
+      "group": "Services",
+      "zh": "咨询",
+      "en": "Compass"
+    },
+    {
+      "id": "gauge",
+      "group": "Services",
+      "zh": "性能",
+      "en": "Gauge"
+    },
+    {
+      "id": "chat",
+      "group": "Services",
+      "zh": "沟通",
+      "en": "Chat"
+    },
+    {
+      "id": "user-check",
+      "group": "Services",
+      "zh": "辅导",
+      "en": "User check"
+    },
+    {
+      "id": "mail",
+      "group": "Contact",
+      "zh": "邮件",
+      "en": "Mail"
+    },
+    {
+      "id": "arrow-right",
+      "group": "Actions",
+      "zh": "行动",
+      "en": "Arrow right"
+    },
+    {
+      "id": "arrow-up-right",
+      "group": "Actions",
+      "zh": "外链",
+      "en": "Arrow up right"
+    },
+    {
+      "id": "check",
+      "group": "Actions",
+      "zh": "完成",
+      "en": "Check"
+    },
+    {
+      "id": "copy",
+      "group": "Actions",
+      "zh": "复制",
+      "en": "Copy"
+    },
+    {
+      "id": "menu",
+      "group": "Utilities",
+      "zh": "菜单",
+      "en": "Menu"
+    },
+    {
+      "id": "close",
+      "group": "Utilities",
+      "zh": "关闭",
+      "en": "Close"
+    },
+    {
+      "id": "github",
+      "group": "Brand",
+      "zh": "GitHub",
+      "en": "GitHub"
+    },
+    {
+      "id": "x",
+      "group": "Brand",
+      "zh": "X",
+      "en": "X"
+    },
+    {
+      "id": "douyin",
+      "group": "Brand",
+      "zh": "抖音",
+      "en": "Douyin (TikTok mark)"
+    },
+    {
+      "id": "wechat",
+      "group": "Brand",
+      "zh": "微信",
+      "en": "WeChat"
+    }
+  ],
+  "sets": [
+    {
+      "id": "architect",
+      "name": "Architect",
+      "preset": "Sharp",
+      "recommended": true,
+      "strokeWidth": 1.5,
+      "strokeLinecap": "square",
+      "strokeLinejoin": "miter",
+      "cornerRadius": 0
+    },
+    {
+      "id": "precision",
+      "name": "Precision",
+      "preset": "Clean",
+      "recommended": false,
+      "strokeWidth": 1.5,
+      "strokeLinecap": "round",
+      "strokeLinejoin": "round",
+      "cornerRadius": 2
+    },
+    {
+      "id": "editorial",
+      "name": "Editorial",
+      "preset": "Minimal",
+      "recommended": false,
+      "strokeWidth": 1.25,
+      "strokeLinecap": "round",
+      "strokeLinejoin": "round",
+      "cornerRadius": 0
+    }
+  ],
+  "brands": [
+    {
+      "id": "github",
+      "zh": "GitHub",
+      "en": "GitHub",
+      "file": "brand/github.svg"
+    },
+    {
+      "id": "x",
+      "zh": "X",
+      "en": "X",
+      "file": "brand/x.svg"
+    },
+    {
+      "id": "douyin",
+      "zh": "抖音",
+      "en": "Douyin (TikTok mark)",
+      "file": "brand/douyin.svg"
+    },
+    {
+      "id": "wechat",
+      "zh": "微信",
+      "en": "WeChat",
+      "file": "brand/wechat.svg"
+    }
+  ],
+  "generated": "2026-11-02"
+}
